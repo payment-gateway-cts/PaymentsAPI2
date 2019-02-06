@@ -1,0 +1,10 @@
+Payments/MakePayment
+JSON payload:
+{
+  "payeeAccountNumber": "021000021",
+  "payorAccountNumber": "35933158286",
+  "paymentMethod": "DC",
+  "transactionType": "Credit",
+  "amount": 10
+}
+===========================================================
