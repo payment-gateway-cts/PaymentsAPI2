@@ -1,0 +1,8 @@
+command for testing microsoft asp.net docker container sample
+docker run -it --rm -p 8000:80 --name aspnetcore_sample microsoft/dotnet-samples:aspnetapp
+
+command for running PaymentAPI app in a linux container on local machine
+docker login payappcontainer.azurecr.io -u PayAppContainer -p Nw7S2EY66MAI97DXI45amimrLxI0+Oab
+docker run -it --rm -p 8000:80 --name paymentapi payappcontainer.azurecr.io/paymentapi
+
+after this you can browse for http://localhost/swagger in IE
