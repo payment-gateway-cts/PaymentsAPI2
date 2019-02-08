@@ -1,8 +1,30 @@
+=======================================================================
 command for testing microsoft asp.net docker container sample
+=======================================================================
 docker run -it --rm -p 8000:80 --name aspnetcore_sample microsoft/dotnet-samples:aspnetapp
 
+=======================================================================
 command for running PaymentAPI app in a linux container on local machine
+=======================================================================
 docker login payappcontainer.azurecr.io -u PayAppContainer -p Nw7S2EY66MAI97DXI45amimrLxI0+Oab
 docker run -it --rm -p 8000:80 --name paymentapi payappcontainer.azurecr.io/paymentapi
 
 after this you can browse for http://localhost/swagger in IE
+
+=======================================================================
+Commands used for deploying docker image to Kubernates from local dev machine
+=======================================================================
+az login
+az aks get-credentials --resource-group PaymentAppResourceGroup --name payappcluster
+az aks browse --resource-group PaymentAppResourceGroup --name payappcluster
+above command launches Kubernates Dashboard in a browser you need to stop this process to issue next commands from command prompt
+
+kubectl get serviceaccounts default -o yaml > ./serviceaccount.yml
+make changes to yml file as described at "https://pascalnaber.wordpress.com/2017/09/12/run-net-core-2-docker-images-in-kubernetes-using-azure-container-service-and-azure-container-registry/" 
+then issue below command
+kubectl create --save-config=true -f deploy.yml
+above command is for first time, next time onwards use below
+kubectl apply -f Deploy.yml
+...
+
+=======================================================================
